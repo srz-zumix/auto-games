@@ -1,0 +1,76 @@
+# -*- encoding=utf8 -*-
+__author__ = "srz_zumix"
+
+from airtest.core.api import *
+from airtest.core.android.adb import *
+
+auto_setup(__file__)
+
+# adb = ADB()
+
+sleep_mul = 1
+
+#def update():
+#    print adb.shell('dumpsys battery')
+
+def pm_sleep(s):
+    sleep(s * sleep_mul)
+
+def touch_positive_button():
+    if exists(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160))):
+        touch(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+        pm_sleep(1)
+        return True
+    return False
+
+def touch_quest_banner(lv):
+    if exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160))):
+        if lv == 0:
+            touch(Template(r"../../images/pm/normal.png", record_pos=(-0.335, 0.16), resolution=(1080, 2160)))
+        elif lv == 1:
+            touch(Template(r"../../images/pm/hard.png", record_pos=(-0.33, -0.145), resolution=(1080, 2160)))
+        elif lv == 2:
+            touch(Template(r"../../images/pm/very-hard.png", record_pos=(-0.324, -0.45), resolution=(1080, 2160)))
+        pm_sleep(1)
+        return True
+    return False
+
+def touch_result():
+    if exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160))):
+        try:
+            touch(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))
+            sleep(0.1)
+            return True
+        except:
+            pass
+    return False
+
+def wait_battle():
+    if not exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160))):
+        if exists(Template(r"../../images/pm/bar.png", record_pos=(-0.003, 0.935), resolution=(1080, 2160))):
+            pm_sleep(30)
+        else:
+            return
+    if touch_result():
+        while touch_result():
+            pass
+        while not touch_positive_button():
+            pass
+        pm_sleep(3)
+
+def auto_battle(lv):
+    while True:
+        if touch_quest_banner(lv):
+            touch_positive_button()
+            pm_sleep(5)
+        else:
+            touch_positive_button()
+        wait_battle()
+        # update()
+
+def main():
+    auto_battle(2)
+
+main()
+
+

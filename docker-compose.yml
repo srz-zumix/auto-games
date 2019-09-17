@@ -1,0 +1,32 @@
+version: '2'
+services:
+  db:
+    image: rethinkdb
+    command: rethinkdb --bind all
+    ports:
+      - 8082:8080
+      - 28015:28015
+    volumes:
+      - db_data:/data
+  adbd:
+    image: sorccu/adb
+    ports:
+      - 5037:5037
+    volumes:
+      - /dev/bus/usb:/dev/bus/usb
+    privileged: true
+  stf:
+    image: openstf/stf
+    ports:
+      - 7100:7100
+      - 7110:7110
+      - 7400-7700:7400-7700
+    links:
+      - db
+      - adbd
+    environment:
+      - RETHINKDB_PORT_28015_TCP=tcp://db:28015
+      - RETHINKDB_ENV_DATABASE=stf
+    command: stf local --allow-remote --public-ip 192.168.99.100 --adb-host adbd
+volumes:
+  db_data:
