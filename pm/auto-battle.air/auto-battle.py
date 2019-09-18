@@ -69,7 +69,7 @@ def auto_battle(lv):
         # update()
 
 def main():
-    auto_battle(2)
+    auto_battle(1)
 
 main()
 
