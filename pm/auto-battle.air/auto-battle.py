@@ -7,18 +7,18 @@ from airtest.core.android.adb import *
 auto_setup(__file__)
 
 # adb = ADB()
-
-sleep_mul = 1
-
-#def update():
+# def update():
 #    print adb.shell('dumpsys battery')
 
+sleep_mul = 1
 def pm_sleep(s):
     sleep(s * sleep_mul)
 
 def touch_positive_button():
-    if exists(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160))):
-        touch(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+    imOk = exists(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+    if imOk:
+        pos = (imOk[0], imOk[1] - 28)
+        touch(pos)
         pm_sleep(1)
         return True
     return False
@@ -36,9 +36,11 @@ def touch_quest_banner(lv):
     return False
 
 def touch_result():
-    if exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160))):
+    imBg = exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))
+    if imBg:
         try:
-            touch(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))
+            pos = (imBg[0], imBg[1])
+            touch(pos)
             sleep(0.1)
             return True
         except:
@@ -69,8 +71,9 @@ def auto_battle(lv):
         # update()
 
 def main():
-    auto_battle(1)
+    auto_battle(2)
 
 main()
+
 
 
