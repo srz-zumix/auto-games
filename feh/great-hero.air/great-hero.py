@@ -9,6 +9,9 @@ sleep_mul = 1
 def pm_sleep(s):
     sleep(s * sleep_mul)
 
+def touch_1():
+    touch((150, 1000))    
+    
 def touch_banner():
     im = exists(Template(r"../../images/feh/luna.png", record_pos=(-0.076, -0.037), resolution=(1080, 2160)))
     if im:
@@ -34,8 +37,7 @@ def touch_green():
 
 def wait_event():
     while not exists(Template(r"../../images/feh/auto.png", record_pos=(0.291, 0.825), resolution=(1080, 2160))):
-        pm_sleep(0.1)
-        touch((200, 200))
+        touch_1()
     pm_sleep(2)
 
 def touch_auto():
@@ -46,15 +48,14 @@ def touch_auto():
         touch(pos)
         pm_sleep(0.5)
         if not touch_green():
-            pm_sleep(1)
             return touch_auto()
         return True
     return False
 
 def wait_battle_end():
     while not exists(Template(r"../../images/feh/clear.png", record_pos=(0.224, 0.029), resolution=(1080, 2160))):
-        pm_sleep(1)
-    touch((200,200))
+        pm_sleep(2)
+    touch_1()
     pm_sleep(2)
     return True
 
@@ -64,10 +65,11 @@ def auto_battle():
         if touch_banner():
             while not touch_green():
                 pass
-            pm_sleep(4)
+            pm_sleep(3)
         wait_event()
         if touch_auto():
             wait_battle_end()
 
 auto_battle()
+
 
