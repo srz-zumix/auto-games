@@ -10,7 +10,7 @@ def pm_sleep(s):
     sleep(s * sleep_mul)
 
 def touch_1():
-    touch((150, 1000))    
+    touch((80, 1100))    
     
 def touch_banner():
     im = exists(Template(r"../../images/feh/luna.png", record_pos=(-0.076, -0.037), resolution=(1080, 2160)))
