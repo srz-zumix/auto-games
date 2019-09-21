@@ -24,15 +24,18 @@ def touch_positive_button():
     return False
 
 def touch_quest_banner(lv):
-    if exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160))):
-        if lv == 0:
-            touch(Template(r"../../images/pm/normal.png", record_pos=(-0.335, 0.16), resolution=(1080, 2160)))
-        elif lv == 1:
-            touch(Template(r"../../images/pm/hard.png", record_pos=(-0.33, -0.145), resolution=(1080, 2160)))
-        elif lv == 2:
-            touch(Template(r"../../images/pm/very-hard.png", record_pos=(-0.324, -0.45), resolution=(1080, 2160)))
-        pm_sleep(1)
-        return True
+    try:
+        if exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160))):
+            if lv == 0:
+                touch(Template(r"../../images/pm/normal.png", record_pos=(-0.335, 0.16), resolution=(1080, 2160)))
+            elif lv == 1:
+                touch(Template(r"../../images/pm/hard.png", record_pos=(-0.33, -0.145), resolution=(1080, 2160)))
+            elif lv == 2:
+                touch(Template(r"../../images/pm/very-hard.png", record_pos=(-0.324, -0.45), resolution=(1080, 2160)))
+            pm_sleep(1)
+            return True
+    except:
+        pass
     return False
 
 def touch_result():
