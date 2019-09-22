@@ -23,6 +23,27 @@ def touch_positive_button():
         return True
     return False
 
+def touch_dlg_positive_button():
+    imOk = exists(Template(r"../../images/pm/dlg-ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+    if imOk:
+        pos = (imOk[0], imOk[1])
+        touch(pos)
+        pm_sleep(1)
+        return True
+    return False
+
+def touch_matching():
+    try:
+        im = exists(Template(r"../../images/pm/random-match.png", record_pos=(-0.223, -0.031), resolution=(1080, 2160)))
+        if im:
+            pos = (im[0], im[1])
+            touch(pos)
+            pm_sleep(1)
+            return True
+    except:
+        pass
+    return False
+
 def touch_quest_banner(lv):
     try:
         if exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160))):
@@ -50,10 +71,20 @@ def touch_result():
             pass
     return False
 
+def check_bar():
+    im = exists(Template(r"../../images/pm/bar.png", record_pos=(-0.003, 0.935), resolution=(1080, 2160)))
+    if im:
+        pos = (im[0], im[1])
+        touch(pos)
+        pm_sleep(15)
+        return True
+    return False
+    
 def wait_battle():
     if not exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160))):
-        if exists(Template(r"../../images/pm/bar.png", record_pos=(-0.003, 0.935), resolution=(1080, 2160))):
-            pm_sleep(30)
+
+        if check_bar():
+            check_bar()
         else:
             return
     if touch_result():
@@ -66,10 +97,12 @@ def wait_battle():
 def auto_battle(lv):
     while True:
         if touch_quest_banner(lv):
+            touch_matching()
             touch_positive_button()
-            pm_sleep(5)
+            pm_sleep(15)
         else:
-            touch_positive_button()
+            if not touch_positive_button():
+                touch_dlg_positive_button()
         wait_battle()
         # update()
 
@@ -77,6 +110,7 @@ def main():
     auto_battle(1)
 
 main()
+
 
 
 
