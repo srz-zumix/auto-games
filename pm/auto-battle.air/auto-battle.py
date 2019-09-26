@@ -91,8 +91,3 @@ def main():
     auto_battle(2)
 
 main()
-
-
-
-
-
