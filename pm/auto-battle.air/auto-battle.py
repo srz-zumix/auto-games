@@ -23,9 +23,13 @@ def touch_positive_button():
         return True
     return False
 
+def is_quest_select():
+    return exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160)))
+
+
 def touch_quest_banner(lv):
     try:
-        if exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160))):
+        if is_quest_select():
             if lv == 0:
                 touch(Template(r"../../images/pm/normal.png", record_pos=(-0.335, 0.16), resolution=(1080, 2160)))
             elif lv == 1:
@@ -76,6 +80,8 @@ def wait_battle():
         while not touch_positive_button():
             pass
         pm_sleep(6)
+        while not is_quest_select():
+            pass
 
 def auto_battle(lv):
     while True:
