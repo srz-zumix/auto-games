@@ -1,8 +1,11 @@
 # -*- encoding=utf8 -*-
 __author__ = "srz_zumix"
 
+sys.path.append(r"../pmbase")
+
 from airtest.core.api import *
 from airtest.core.android.adb import *
+from pmbase import PmBase
 
 auto_setup(__file__)
 
@@ -11,8 +14,10 @@ auto_setup(__file__)
 #    print adb.shell('dumpsys battery')
 
 sleep_mul = 1
+pm = PmBase(sleep_mul)
+
 def pm_sleep(s):
-    sleep(s * sleep_mul)
+    pm.pm_sleep(s)
 
 def touch_positive_button():
     imOk = exists(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
@@ -24,23 +29,10 @@ def touch_positive_button():
     return False
 
 def is_quest_select():
-    return exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160)))
-
+    return pm.is_quest_select()
 
 def touch_quest_banner(lv):
-    try:
-        if is_quest_select():
-            if lv == 0:
-                touch(Template(r"../../images/pm/normal.png", record_pos=(-0.335, 0.16), resolution=(1080, 2160)))
-            elif lv == 1:
-                touch(Template(r"../../images/pm/hard.png", record_pos=(-0.33, -0.145), resolution=(1080, 2160)))
-            elif lv == 2:
-                touch(Template(r"../../images/pm/very-hard.png", record_pos=(-0.324, -0.45), resolution=(1080, 2160)))
-            pm_sleep(1)
-            return True
-    except:
-        pass
-    return False
+    return pm.touch_quest_banner(lv)
 
 def touch_result():
     imBg = exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))
@@ -97,3 +89,6 @@ def main():
     auto_battle(2)
 
 main()
+
+
+

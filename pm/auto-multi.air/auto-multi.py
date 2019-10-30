@@ -1,8 +1,11 @@
 # -*- encoding=utf8 -*-
 __author__ = "srz_zumix"
 
+sys.path.append(r"../pmbase")
+
 from airtest.core.api import *
 from airtest.core.android.adb import *
+from pmbase import PmBase
 
 auto_setup(__file__)
 
@@ -64,6 +67,8 @@ def touch_quest_banner(lv):
                 touch(Template(r"../../images/pm/hard.png", record_pos=(-0.33, -0.145), resolution=(1080, 2160)))
             elif lv == 2:
                 touch(Template(r"../../images/pm/very-hard.png", record_pos=(-0.324, -0.45), resolution=(1080, 2160)))
+            elif lv == 3:
+                touch(Template(r"../../images/pm/expert.png", record_pos=(-0.324, -0.45), resolution=(1080, 2160)))
             pm_sleep(1)
             return True
     except:
@@ -148,3 +153,4 @@ def main():
     auto_battle(1)
 
 main()
+
