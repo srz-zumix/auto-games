@@ -14,7 +14,7 @@ class PmBase:
         sleep(s * self.sleep_mul)
 
     def is_quest_select(self):
-        return exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160)))
+        return exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160), rgb=False))
 
     def touch_quest_banner(self, lv):
         try:
@@ -32,5 +32,27 @@ class PmBase:
         except:
             pass
         return False
+
+    def touch_positive_button(self):
+        imOk = exists(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+        if imOk:
+            pos = (imOk[0], imOk[1] - 28)
+            touch(pos)
+            slef.pm_sleep(1)
+            return True
+        return False
+
+    def touch_result(self):
+        imBg = exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))
+        if imBg:
+            try:
+                pos = (imBg[0], imBg[1])
+                touch(pos)
+                self.pm_sleep(0.1)
+                return True
+            except:
+                pass
+        return False
+
 
 

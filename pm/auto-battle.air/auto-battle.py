@@ -20,13 +20,7 @@ def pm_sleep(s):
     pm.pm_sleep(s)
 
 def touch_positive_button():
-    imOk = exists(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
-    if imOk:
-        pos = (imOk[0], imOk[1] - 28)
-        touch(pos)
-        pm_sleep(1)
-        return True
-    return False
+    return pm.touch_quest_banner()
 
 def is_quest_select():
     return pm.is_quest_select()
@@ -35,16 +29,7 @@ def touch_quest_banner(lv):
     return pm.touch_quest_banner(lv)
 
 def touch_result():
-    imBg = exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))
-    if imBg:
-        try:
-            pos = (imBg[0], imBg[1])
-            touch(pos)
-            sleep(0.1)
-            return True
-        except:
-            pass
-    return False
+    return pm.touch_result()
 
 def check_bar():
     im = exists(Template(r"../../images/pm/bar2.png", record_pos=(-0.003, 0.935), resolution=(1080, 2160)))
@@ -89,6 +74,4 @@ def main():
     auto_battle(2)
 
 main()
-
-
 
