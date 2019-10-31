@@ -20,7 +20,7 @@ def pm_sleep(s):
     pm.pm_sleep(s)
 
 def touch_positive_button():
-    return pm.touch_result()
+    return pm.touch_positive_button()
 
 def touch_dlg_positive_button():
     im = exists(Template(r"../../images/pm/dlg-restart.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
