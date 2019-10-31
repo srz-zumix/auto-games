@@ -14,7 +14,7 @@ class PmBase:
         sleep(s * self.sleep_mul)
 
     def is_quest_select(self):
-        return exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160), rgb=False))
+        return exists(Template(r"../../images/pm/banner.png", record_pos=(0.004, -0.218), resolution=(1080, 2160), threshold=0.6, rgb=False))
 
     def touch_quest_banner(self, lv):
         try:
