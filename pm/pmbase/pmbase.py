@@ -38,7 +38,7 @@ class PmBase:
         if imOk:
             pos = (imOk[0], imOk[1] - 28)
             touch(pos)
-            slef.pm_sleep(1)
+            self.pm_sleep(1)
             return True
         return False
 
