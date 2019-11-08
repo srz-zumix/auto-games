@@ -20,7 +20,7 @@ def pm_sleep(s):
     pm.pm_sleep(s)
 
 def touch_positive_button():
-    return pm.touch_quest_banner()
+    return pm.touch_positive_button()
 
 def is_quest_select():
     return pm.is_quest_select()
