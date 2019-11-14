@@ -123,7 +123,7 @@ def wait_battle():
         pm_sleep(6)
         while not is_quest_select():
             pass
-        logger.message("win")
+        logger.log("win")
 
 def auto_battle(lv):
     while True:
