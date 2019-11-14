@@ -7,6 +7,7 @@ from airtest.core.api import *
 from airtest.core.android.adb import *
 from pmbase import PmBase
 import datetime
+import codecs
 
 auto_setup(__file__)
 
@@ -16,10 +17,11 @@ auto_setup(__file__)
 
 class Logger:
     def __init__(self, path):
-        self.f = open(path, 'w')
+        self.path = path
 
     def log(self, message):
-        self.f.write(message)
+        with codecs.open(self.path, 'a', 'utf-8') as f:
+            f.write(message + "\n")
 
 
 sleep_mul = 1
@@ -140,6 +142,3 @@ def main():
     auto_battle(1)
 
 main()
-
-
-
