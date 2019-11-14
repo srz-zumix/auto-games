@@ -6,6 +6,7 @@ sys.path.append(r"../pmbase")
 from airtest.core.api import *
 from airtest.core.android.adb import *
 from pmbase import PmBase
+import datetime
 
 auto_setup(__file__)
 
@@ -13,8 +14,19 @@ auto_setup(__file__)
 # def update():
 #    print adb.shell('dumpsys battery')
 
+class Logger:
+    def __init__(self, path):
+        self.f = open(path, 'w')
+
+    def log(self, message):
+        self.f.write(message)
+
+
 sleep_mul = 1
 pm = PmBase(sleep_mul)
+
+now = datetime.datetime.now()
+logger = Logger("./log/{0:%Y%m%d_%H%M%S}.txt".format(now))
 
 def pm_sleep(s):
     pm.pm_sleep(s)
@@ -44,6 +56,7 @@ def touch_matching():
             pos = (im[0], im[1])
             touch(pos)
             pm_sleep(1)
+            logger.log("match");
             return True
     except:
         pass
@@ -102,12 +115,15 @@ def wait_battle():
         while touch_result():
             pass
         while not touch_positive_button():
+            if is_quest_select():
+                return
             pass
         pm_sleep(1)
         touch_positive_button()
         pm_sleep(6)
         while not is_quest_select():
             pass
+        logger.message("win")
 
 def auto_battle(lv):
     while True:
@@ -115,9 +131,8 @@ def auto_battle(lv):
             touch_matching()
             touch_positive_button()
             pm_sleep(30)
-        else:
-            if not touch_positive_button():
-                touch_dlg_positive_button()
+        if not touch_positive_button():
+            touch_dlg_positive_button()
         wait_battle()
         # update()
 
@@ -125,5 +140,6 @@ def main():
     auto_battle(1)
 
 main()
+
 
 
