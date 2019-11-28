@@ -60,6 +60,7 @@ def wait_battle_end():
         else:
             pm_sleep(2)
     touch_1()
+    pm_sleep(1)
     for i in xrange(5):
         if exists(Template(r"../../images/feh/map_select.png", record_pos=(-0.022, -0.494), resolution=(1080, 2160))):
             result = True
