@@ -53,12 +53,20 @@ def touch_auto():
     return False
 
 def wait_battle_end():
-    while not exists(Template(r"../../images/feh/clear.png", record_pos=(0.224, 0.029), resolution=(1080, 2160))):
-        pm_sleep(2)
+    result = False
+    for i in xrange(50):
+        if exists(Template(r"../../images/feh/clear.png", record_pos=(0.224, 0.029), resolution=(1080, 2160))):
+            break
+        else:
+            pm_sleep(2)
     touch_1()
-    while not exists(Template(r"../../images/feh/map_select.png", record_pos=(-0.022, -0.494), resolution=(1080, 2160))):
-        pm_sleep(1)
-    return True
+    for i in xrange(5):
+        if exists(Template(r"../../images/feh/map_select.png", record_pos=(-0.022, -0.494), resolution=(1080, 2160))):
+            result = True
+            break
+        else:
+            pm_sleep(1)
+    return result
 
 
 def auto_battle():
