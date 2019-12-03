@@ -22,9 +22,6 @@ def pm_sleep(s):
 def touch_positive_button():
     return pm.touch_positive_button()
 
-def touch_oncemore_button():
-    return pm.touch_oncemore_button()
-
 def is_quest_select():
     return pm.is_quest_select()
 
@@ -35,7 +32,7 @@ def touch_result():
     return pm.touch_result()
 
 def check_bar():
-    im = pm.exists_battle_symbol()
+    im = exists(Template(r"../../images/pm/bar2.png", record_pos=(-0.003, 0.935), resolution=(1080, 2160)))
     if im:
         pos = (im[0], im[1])
         touch(pos)
@@ -57,17 +54,19 @@ def wait_battle():
     if touch_result():
         while touch_result():
             pass
-        while not touch_oncemore_button():
-            touch_positive_button()
+        while not touch_positive_button():
             pass
         pm_sleep(6)
+        while not is_quest_select():
+            pass
 
 def auto_battle(lv):
-    # once
-    if touch_quest_banner(lv):
-        touch_positive_button()
-        pm_sleep(10)
     while True:
+        if touch_quest_banner(lv):
+            touch_positive_button()
+            pm_sleep(10)
+        else:
+            touch_positive_button()
         wait_battle()
         # update()
 

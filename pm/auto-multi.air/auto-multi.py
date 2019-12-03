@@ -78,6 +78,7 @@ def exists_battle():
     imBar = exists(Template(r"../../images/pm/gage.png", record_pos=(-0.002, 0.249), resolution=(1080, 2160)))
     if imBar:
         return imBar
+    return pm.exists_battle_symbol()
     im = exists(Template(r"../../images/pm/bar2.png", record_pos=(-0.003, 0.935), resolution=(1080, 2160)))
     if im:
         y1 = im[1]

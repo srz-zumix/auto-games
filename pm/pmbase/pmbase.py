@@ -27,6 +27,8 @@ class PmBase:
                     touch(Template(r"../../images/pm/very-hard.png", record_pos=(-0.324, -0.45), resolution=(1080, 2160)))
                 elif lv == 3:
                     touch(Template(r"../../images/pm/expert.png", record_pos=(-0.324, -0.45), resolution=(1080, 2160)))
+                elif lv == 4:
+                    touch(Template(r"../../images/pm/super-expert.png", record_pos=(-0.317, -0.446), resolution=(1080, 2160)))
                 self.pm_sleep(1)
                 return True
         except:
@@ -35,6 +37,15 @@ class PmBase:
 
     def touch_positive_button(self):
         imOk = exists(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+        if imOk:
+            pos = (imOk[0], imOk[1] - 28)
+            touch(pos)
+            self.pm_sleep(1)
+            return True
+        return False
+
+    def touch_oncemore_button(self):
+        imOk = exists(Template(r"../../images/pm/once-more.png", record_pos=(0.22, 0.896), resolution=(1080, 2160)))
         if imOk:
             pos = (imOk[0], imOk[1] - 28)
             touch(pos)
@@ -54,5 +65,14 @@ class PmBase:
                 pass
         return False
 
-
+    def exists_battle_symbol(self):
+        im = exists(Template(r"../../images/pm/bar2.png", record_pos=(-0.003, 0.935), resolution=(1080, 2160)))
+        if im:
+            y1 = im[1]
+            im = exists(Template(r"../../images/pm/speed-and-auto.png", record_pos=(0.328, -0.949), resolution=(1080, 2160)))
+            if im:
+                y2 = im[1]
+                if abs(y2-y1) > 600:
+                    return im
+        return False
 
