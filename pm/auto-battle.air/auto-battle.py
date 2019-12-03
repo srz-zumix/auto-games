@@ -69,10 +69,15 @@ def auto_battle(lv):
         pm_sleep(10)
     while True:
         wait_battle()
-        # update()
+        if is_quest_select():
+            break
+
+def auto_select_battle(lv):
+    while True:
+        auto_battle(lv)
 
 def main():
-    auto_battle(4)
+    auto_select_battle(4)
 
 main()
 
