@@ -67,6 +67,8 @@ def auto_battle(lv):
     if touch_quest_banner(lv):
         touch_positive_button()
         pm_sleep(10)
+    else:
+        touch_positive_button()
     while True:
         wait_battle()
         if is_quest_select():
