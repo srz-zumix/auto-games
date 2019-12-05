@@ -73,6 +73,8 @@ def auto_battle(lv):
         wait_battle()
         if is_quest_select():
             break
+        else:
+            touch_positive_button()
 
 def auto_select_battle(lv):
     while True:
