@@ -58,8 +58,9 @@ def wait_battle():
         while touch_result():
             pass
         while not touch_oncemore_button():
-            touch_positive_button()
-            pass
+            if not touch_positive_button():
+                while touch_result():
+                    pass
         pm_sleep(6)
 
 def auto_battle(lv):
