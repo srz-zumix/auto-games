@@ -73,6 +73,7 @@ def wait_battle_end():
 def auto_battle():
     while True:
         if touch_banner():
+            pm_sleep(0.1)
             while not touch_green():
                 pass
             pm_sleep(4)
