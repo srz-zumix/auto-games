@@ -22,7 +22,8 @@ def pm_sleep(s):
 def touch_positive_button():
     return pm.touch_positive_button()
 
-def touch_oncemore_button():
+def 
+():
     return pm.touch_oncemore_button()
 
 def is_quest_select():
@@ -54,14 +55,7 @@ def wait_battle():
     if not exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160))):
         if not is_wait_bar():
             return
-    if touch_result():
-        while touch_result():
-            pass
-        while not touch_oncemore_button():
-            if not touch_positive_button():
-                while touch_result():
-                    pass
-        pm_sleep(6)
+    pm.step_result()
 
 def auto_battle(lv):
     # once
@@ -85,4 +79,6 @@ def main():
     auto_select_battle(4)
 
 main()
+
+
 

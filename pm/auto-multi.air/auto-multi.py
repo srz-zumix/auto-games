@@ -36,6 +36,9 @@ def pm_sleep(s):
 def touch_positive_button():
     return pm.touch_positive_button()
 
+def touch_oncemore_button():
+    return pm.touch_oncemore_button()
+
 def touch_dlg_positive_button():
     im = exists(Template(r"../../images/pm/dlg-restart.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
     if im:
@@ -113,32 +116,32 @@ def wait_battle():
     if not exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160))):
         if not wait_check_battle():
             return
-    if touch_result():
-        while touch_result():
-            pass
-        while not touch_positive_button():
-            if is_quest_select():
-                return
-            pass
-        pm_sleep(1)
-        touch_positive_button()
-        pm_sleep(6)
-        while not is_quest_select():
-            pass
-        logger.log("win")
+    r = pm.step_result()
+    if r:
+        logger.log(r)
 
 def auto_battle(lv):
+    if touch_quest_banner(lv):
+        touch_matching()
+        touch_positive_button()
+        pm_sleep(30)
+    if not touch_positive_button():
+        touch_dlg_positive_button()
+        touch_oncemore_button()
     while True:
-        if touch_quest_banner(lv):
-            touch_matching()
-            touch_positive_button()
-            pm_sleep(30)
-        if not touch_positive_button():
-            touch_dlg_positive_button()
         wait_battle()
-        # update()
+        if is_quest_select():
+            break
+        else:
+            touch_positive_button()
+            touch_oncemore_button()
+
+def auto_select_battle(lv):
+    while True:
+        auto_battle(lv)
 
 def main():
-    auto_battle(1)
+    auto_select_battle(0)
 
 main()
+

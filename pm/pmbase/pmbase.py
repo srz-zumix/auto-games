@@ -65,6 +65,21 @@ class PmBase:
                 pass
         return False
 
+    def step_result(self):
+        if self.touch_result():
+            while self.touch_result():
+                self.pm_sleep(0.5)
+                self.touch_positive_button()
+            while not self.touch_oncemore_button():
+                if not self.touch_positive_button():
+                    while self.touch_result():
+                        pass
+            self.pm_sleep(6)
+            if self.is_quest_select():
+                return "lose"
+            return "win"
+        return None
+
     def exists_battle_symbol(self):
         im = exists(Template(r"../../images/pm/bar2.png", record_pos=(-0.003, 0.935), resolution=(1080, 2160)))
         if im:
