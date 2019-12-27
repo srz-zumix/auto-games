@@ -22,8 +22,7 @@ def pm_sleep(s):
 def touch_positive_button():
     return pm.touch_positive_button()
 
-def 
-():
+def touch_oncemore_button():
     return pm.touch_oncemore_button()
 
 def is_quest_select():
