@@ -51,7 +51,14 @@ class PmBase:
             touch(pos)
             self.pm_sleep(1)
             return True
+        imOk = exists(Template(r"../../images/pm/once-more2.png", record_pos=(0.217, 0.759), resolution=(1080, 2160)))
+        if imOk:
+            pos = (imOk[0], imOk[1] - 28)
+            touch(pos)
+            self.pm_sleep(1)
+            return True
         return False
+
 
     def touch_result(self):
         imBg = exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))

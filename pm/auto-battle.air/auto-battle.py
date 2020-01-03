@@ -62,7 +62,8 @@ def auto_battle(lv):
         touch_positive_button()
         pm_sleep(10)
     else:
-        touch_positive_button()
+        if not touch_positive_button():
+            touch_oncemore_button()
     while True:
         wait_battle()
         if is_quest_select():
@@ -78,6 +79,7 @@ def main():
     auto_select_battle(4)
 
 main()
+
 
 
 
