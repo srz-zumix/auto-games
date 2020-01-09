@@ -24,11 +24,10 @@ def setup():
 def wait_battle_end():
     result = False
     for i in xrange(50):
+        for j in xrange(200):
+            tap()
         if touch_green():
             break
-        else:
-            for j in xrange(100):
-                tap()
     tap()
     pm_sleep(1)
     for i in xrange(5):
