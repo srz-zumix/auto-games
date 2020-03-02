@@ -141,7 +141,7 @@ def auto_select_battle(lv):
         auto_battle(lv)
 
 def main():
-    auto_select_battle(0)
+    auto_select_battle(2)
 
 main()
 

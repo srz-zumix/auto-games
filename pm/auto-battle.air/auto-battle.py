@@ -25,6 +25,11 @@ def touch_positive_button():
 def touch_oncemore_button():
     return pm.touch_oncemore_button()
 
+def touch_next_button():
+    if touch_positive_button():
+        return True
+    return touch_oncemore_button()    
+
 def is_quest_select():
     return pm.is_quest_select()
 
@@ -62,14 +67,13 @@ def auto_battle(lv):
         touch_positive_button()
         pm_sleep(10)
     else:
-        if not touch_positive_button():
-            touch_oncemore_button()
+        touch_next_button()
     while True:
         wait_battle()
         if is_quest_select():
             break
         else:
-            touch_positive_button()
+            touch_next_button()
 
 def auto_select_battle(lv):
     while True:
