@@ -2,8 +2,12 @@
 __author__ = "srz_zumix"
 
 from airtest.core.api import *
+from airtest.core.android import *
 
 auto_setup(__file__)
+dev = device()
+if isinstance(dev, Android):
+    dev.touch_method ="ADBTOUCH"
 
 sleep_mul = 1
 def pm_sleep(s):

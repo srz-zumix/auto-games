@@ -4,10 +4,13 @@ __author__ = "srz_zumix"
 sys.path.append(r"../pmbase")
 
 from airtest.core.api import *
-from airtest.core.android.adb import *
+from airtest.core.android import *
 from pmbase import PmBase
 
 auto_setup(__file__)
+dev = device()
+if isinstance(dev, Android):
+    dev.touch_method ="ADBTOUCH"
 
 # adb = ADB()
 # def update():

@@ -4,12 +4,15 @@ __author__ = "srz_zumix"
 sys.path.append(r"../pmbase")
 
 from airtest.core.api import *
-from airtest.core.android.adb import *
+from airtest.core.android import *
 from pmbase import PmBase
 import datetime
 import codecs
 
 auto_setup(__file__)
+dev = device()
+if isinstance(dev, Android):
+    dev.touch_method ="ADBTOUCH"
 
 # adb = ADB()
 # def update():
@@ -133,7 +136,8 @@ def auto_battle(lv):
         if is_quest_select():
             break
         else:
-            touch_positive_button()
+            if not touch_positive_button():
+                touch_positive_button()
             touch_oncemore_button()
 
 def auto_select_battle(lv):
