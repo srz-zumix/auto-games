@@ -116,7 +116,7 @@ def wait_check_battle():
     return False
 
 def wait_battle():
-    if not exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160))):
+    if not pm.is_result_bg():
         if not wait_check_battle():
             return
     r = pm.step_result()
@@ -145,7 +145,6 @@ def auto_select_battle(lv):
         auto_battle(lv)
 
 def main():
-    auto_select_battle(2)
+    auto_select_battle(3)
 
 main()
-

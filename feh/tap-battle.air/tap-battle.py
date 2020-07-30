@@ -17,6 +17,9 @@ tap_pos = None
 def tap():
     if tap_pos:
         touch(tap_pos)
+def taps(n):
+    if tap_pos:
+        touch(tap_pos, times=n)
 
 def setup():
     global tap_pos
@@ -28,8 +31,9 @@ def setup():
 def wait_battle_end():
     result = False
     for i in xrange(50):
-        for j in xrange(200):
-            tap()
+#        for j in xrange(200):
+#            tap()
+        taps(100)
         if touch_green():
             break
     tap()

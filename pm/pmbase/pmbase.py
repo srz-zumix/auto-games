@@ -60,8 +60,18 @@ class PmBase:
         return False
 
 
-    def touch_result(self):
+    def is_result_bg(self):
+        imBg = exists(Template(r"../../images/pm/result-with-rank.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))
+        if imBg:
+            return imBg
         imBg = exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))
+        if imBg:
+            return imBg
+        return False
+
+
+    def touch_result(self):
+        imBg = self.is_result_bg()
         if imBg:
             try:
                 pos = (imBg[0], imBg[1])

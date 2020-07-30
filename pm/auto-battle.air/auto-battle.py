@@ -31,7 +31,7 @@ def touch_oncemore_button():
 def touch_next_button():
     if touch_positive_button():
         return True
-    return touch_oncemore_button()    
+    return touch_oncemore_button()
 
 def is_quest_select():
     return pm.is_quest_select()
@@ -59,7 +59,7 @@ def is_wait_bar():
     return False
 
 def wait_battle():
-    if not exists(Template(r"../../images/pm/result.png", record_pos=(0.049, 0.641), resolution=(1080, 2160))):
+    if not pm.is_result_bg():
         if not is_wait_bar():
             return
     pm.step_result()
@@ -86,7 +86,3 @@ def main():
     auto_select_battle(4)
 
 main()
-
-
-
-
