@@ -4,15 +4,11 @@ __author__ = "srz_zumix"
 sys.path.append(r"../pmbase")
 
 from airtest.core.api import *
-from airtest.core.android import *
 from pmbase import PmBase
 import datetime
 import codecs
 
 auto_setup(__file__)
-dev = device()
-if isinstance(dev, Android):
-    dev.touch_method ="ADBTOUCH"
 
 # adb = ADB()
 # def update():
@@ -29,6 +25,8 @@ class Logger:
 
 sleep_mul = 1
 pm = PmBase(sleep_mul)
+
+pm.setup()
 
 now = datetime.datetime.now()
 logger = Logger("./log/{0:%Y%m%d_%H%M%S}.txt".format(now))
@@ -148,3 +146,5 @@ def main():
     auto_select_battle(3)
 
 main()
+
+

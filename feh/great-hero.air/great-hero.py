@@ -6,6 +6,9 @@ from airtest.core.android import *
 
 auto_setup(__file__)
 dev = device()
+if not dev:
+    connect_device("Android://")
+dev = device()
 if isinstance(dev, Android):
     dev.touch_method ="ADBTOUCH"
 
@@ -87,6 +90,7 @@ def auto_battle():
             wait_battle_end()
 
 auto_battle()
+
 
 
 

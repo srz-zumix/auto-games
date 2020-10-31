@@ -4,13 +4,9 @@ __author__ = "srz_zumix"
 sys.path.append(r"../pmbase")
 
 from airtest.core.api import *
-from airtest.core.android import *
 from pmbase import PmBase
 
 auto_setup(__file__)
-dev = device()
-if isinstance(dev, Android):
-    dev.touch_method ="ADBTOUCH"
 
 # adb = ADB()
 # def update():
@@ -18,6 +14,8 @@ if isinstance(dev, Android):
 
 sleep_mul = 1
 pm = PmBase(sleep_mul)
+
+pm.setup()
 
 def pm_sleep(s):
     pm.pm_sleep(s)
@@ -86,3 +84,4 @@ def main():
     auto_select_battle(4)
 
 main()
+

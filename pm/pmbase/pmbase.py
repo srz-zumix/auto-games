@@ -1,11 +1,20 @@
 import os
 
 from airtest.core.api import *
+from airtest.core.android import *
 from time import sleep
 
 class PmBase:
     def __init__(self, sleep_mul):
         self.sleep_mul = sleep_mul
+
+    def setup(self):
+        dev = device()
+        if not dev:
+            connect_device("Android://")
+        dev = device()
+        if isinstance(dev, Android):
+            dev.touch_method ="ADBTOUCH"
 
     def set_sleep_mul(self, m):
         self.sleep_mul = m
