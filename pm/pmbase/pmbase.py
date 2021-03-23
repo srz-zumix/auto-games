@@ -78,7 +78,6 @@ class PmBase:
             return imBg
         return False
 
-
     def touch_result(self):
         imBg = self.is_result_bg()
         if imBg:
