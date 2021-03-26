@@ -40,15 +40,8 @@ def do_race():
         uma.pm_sleep(1)
 
 
-def make_debut_turn():
-    if uma.is_locked_race():
-        uma.touch_dayoff()
-        uma.pm_sleep(2)
-    uma.do_select()
-
-
 def do_ms_race():
-    while uma.is_before_race():
+    while uma.is_before_ms_race():
         uma.touch_goto_race()
         uma.pm_sleep(1)
         uma.touch_green()
@@ -56,12 +49,21 @@ def do_ms_race():
     do_race()
 
 
+def make_debut_turn():
+    if uma.is_locked_race():
+        uma.touch_dayoff()
+        uma.pm_sleep(2)
+    uma.do_select()
+
+
 def make_debut():
     rescue()
     while True:
         make_debut_turn()
+        make_debut_turn()
+        make_debut_turn()
         rescue()
-        if uma.is_before_race():
+        if uma.is_before_ms_race():
             do_ms_race()
             return
         uma.touch_green()
@@ -88,19 +90,32 @@ def race_turns():
 
 def loop_race():
     rescue()
-    while not uma.is_before_race():
+    while not uma.is_before_ms_race():
         race_turns()
     do_ms_race()
 
 
+def no_race_turn():
+    if exists(Template(r"../../images/uma/norace-turn.png", threshold=0.9, record_pos=(-0.336, -0.822), resolution=(1080, 2160))):
+        uma.touch_dayoff()
+        uma.pm_sleep(2)
+        uma.do_select()
+
 def auto_mani():
-    #make_debut()
+    if uma.is_opened_race() and uma.is_locked_race():
+        make_debut()
+    no_race_turn()
     loop_race()
 
 def main():
     auto_mani()
 
 main()
+
+
+
+
+
 
 
 

@@ -116,8 +116,8 @@ class UmaBase:
     def is_opened_race(self):
         return exists(Template(r"../../images/uma/race.png", record_pos=(0.267, 0.791), resolution=(1080, 2160)))
 
-    def is_before_race(self):
-        return exists(Template(r"../../images/uma/before-race.png", record_pos=(-0.213, 0.722), resolution=(1080, 2160)))
+    def is_before_ms_race(self):
+        return exists(Template(r"../../images/uma/before-ms-race.png", record_pos=(0.009, 0.71), resolution=(1080, 2160)))
 
     def is_briefing_race(self):
         return exists(Template(r"../../images/uma/briefing-race.png", record_pos=(0.083, 0.853), resolution=(1080, 2160)))
