@@ -50,7 +50,7 @@ class PmBase:
             pos = (imOk[0], imOk[1] - 28)
             touch(pos)
             self.pm_sleep(1)
-            return True
+            return imOk
         return False
 
     def touch_oncemore_button(self):
@@ -59,15 +59,29 @@ class PmBase:
             pos = (imOk[0], imOk[1] - 28)
             touch(pos)
             self.pm_sleep(1)
-            return True
+            return imOk
         imOk = exists(Template(r"../../images/pm/once-more2.png", record_pos=(0.217, 0.759), resolution=(1080, 2160)))
         if imOk:
             pos = (imOk[0], imOk[1] - 28)
             touch(pos)
             self.pm_sleep(1)
-            return True
+            return imOk
         return False
 
+    def touch_dlg_positive_button(self):
+        im = exists(Template(r"../../images/pm/dlg-restart.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+        if im:
+            pos = (im[0], im[1])
+            touch(pos)
+            self.pm_sleep(1)
+            return im
+        imOk = exists(Template(r"../../images/pm/dlg-ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+        if imOk:
+            pos = (imOk[0], imOk[1])
+            touch(pos)
+            self.pm_sleep(1)
+            return imOk
+        return False
 
     def is_result_bg(self):
         imBg = exists(Template(r"../../images/pm/result-with-rank.png", record_pos=(0.049, 0.641), resolution=(1080, 2160)))

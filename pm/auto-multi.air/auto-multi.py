@@ -40,21 +40,6 @@ def touch_positive_button():
 def touch_oncemore_button():
     return pm.touch_oncemore_button()
 
-def touch_dlg_positive_button():
-    im = exists(Template(r"../../images/pm/dlg-restart.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
-    if im:
-        pos = (im[0], im[1])
-        touch(pos)
-        pm_sleep(1)
-        return True
-    imOk = exists(Template(r"../../images/pm/dlg-ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
-    if imOk:
-        pos = (imOk[0], imOk[1])
-        touch(pos)
-        pm_sleep(1)
-        return True
-    return False
-
 def touch_matching():
     try:
         im = exists(Template(r"../../images/pm/random-match.png", record_pos=(-0.223, -0.031), resolution=(1080, 2160)))
@@ -99,7 +84,7 @@ def check_battle():
     if im:
         pos = (100, im[1])
         touch(pos)
-        if touch_dlg_positive_button():
+        if pm.touch_dlg_positive_button():
             return False
         pm_sleep(15)
         return True
@@ -127,7 +112,7 @@ def auto_battle(lv):
         touch_positive_button()
         pm_sleep(30)
     if not touch_positive_button():
-        touch_dlg_positive_button()
+        pm.touch_dlg_positive_button()
         touch_oncemore_button()
     while True:
         wait_battle()
