@@ -64,7 +64,7 @@ def touch_result():
     return pm.touch_result()
 
 def exists_battle():
-    imBar = exists(Template(r"../../images/pm/gage.png", record_pos=(-0.002, 0.249), resolution=(1080, 2160)))
+    imBar = exists(Template(r"../../images/pm/gage.png", threshold=0.75, record_pos=(-0.002, 0.249), resolution=(1080, 2160)))
     if imBar:
         return imBar
     im = exists(Template(r"../../images/pm/bar2.png", record_pos=(-0.003, 0.935), resolution=(1080, 2160)))
@@ -128,8 +128,9 @@ def auto_select_battle(lv):
         auto_battle(lv)
 
 def main():
-    auto_select_battle(3)
+    auto_select_battle(4)
 
 main()
+
 
 

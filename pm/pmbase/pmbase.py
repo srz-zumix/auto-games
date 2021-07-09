@@ -7,6 +7,7 @@ from time import sleep
 class PmBase:
     def __init__(self, sleep_mul):
         self.sleep_mul = sleep_mul
+        self.positive_button_threshould = 0.75
 
     def setup(self):
         dev = device()
@@ -45,7 +46,7 @@ class PmBase:
         return False
 
     def touch_positive_button(self):
-        imOk = exists(Template(r"../../images/pm/ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+        imOk = exists(Template(r"../../images/pm/ok.png", threshold=self.positive_button_threshould, record_pos=(0.001, 0.889), resolution=(1080, 2160)))
         if imOk:
             pos = (imOk[0], imOk[1] - 28)
             touch(pos)
@@ -54,13 +55,13 @@ class PmBase:
         return False
 
     def touch_oncemore_button(self):
-        imOk = exists(Template(r"../../images/pm/once-more.png", record_pos=(0.22, 0.896), resolution=(1080, 2160)))
+        imOk = exists(Template(r"../../images/pm/once-more.png", threshold=self.positive_button_threshould, record_pos=(0.22, 0.896), resolution=(1080, 2160)))
         if imOk:
             pos = (imOk[0], imOk[1] - 28)
             touch(pos)
             self.pm_sleep(1)
             return imOk
-        imOk = exists(Template(r"../../images/pm/once-more2.png", record_pos=(0.217, 0.759), resolution=(1080, 2160)))
+        imOk = exists(Template(r"../../images/pm/once-more2.png", threshold=self.positive_button_threshould, record_pos=(0.217, 0.759), resolution=(1080, 2160)))
         if imOk:
             pos = (imOk[0], imOk[1] - 28)
             touch(pos)
@@ -69,13 +70,13 @@ class PmBase:
         return False
 
     def touch_dlg_positive_button(self):
-        im = exists(Template(r"../../images/pm/dlg-restart.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+        im = exists(Template(r"../../images/pm/dlg-restart.png", threshold=self.positive_button_threshould, record_pos=(0.001, 0.889), resolution=(1080, 2160)))
         if im:
             pos = (im[0], im[1])
             touch(pos)
             self.pm_sleep(1)
             return im
-        imOk = exists(Template(r"../../images/pm/dlg-ok.png", record_pos=(0.001, 0.889), resolution=(1080, 2160)))
+        imOk = exists(Template(r"../../images/pm/dlg-ok.png", threshold=self.positive_button_threshould, record_pos=(0.001, 0.889), resolution=(1080, 2160)))
         if imOk:
             pos = (imOk[0], imOk[1])
             touch(pos)
@@ -129,4 +130,6 @@ class PmBase:
                 if abs(y2-y1) > 600:
                     return im
         return False
+
+
 
